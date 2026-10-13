@@ -92,3 +92,6 @@ src/generated/
 /design.md
 /tech.md
 *.puml
+
+# 本地一次性构建引导脚本
+build.bootstrap.gradle
