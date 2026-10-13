@@ -16,15 +16,14 @@ apply plugin: 'org.spongepowered.mixin'
 group = 'campionebase'
 version = '0.0.1'
 
-// 核心模组（ErosionEra）的依赖坐标与构建产物位置。
+// 核心模组（ErosionEra）的依赖来源。
 //   工作区模式：核心是同一次构建中的 :core 子工程
-//   独立模式  ：核心仓库以 git 子模块形式位于同级目录，需先在其目录内执行 gradlew build
-def coreVersion = '0.0.1'
-def inWorkspace = rootProject.findProject(':core') != null
-def coreJarDir = inWorkspace
-        ? rootProject.project(':core').layout.buildDirectory.dir('libs').get().asFile
-        : file('../core/build/libs')
-def coreJarTask = inWorkspace ? ':core:reobfJar' : null
+//   独立模式  ：核心仓库位于同级目录，需先在其目录内执行 gradlew build
+// 核心模组的本地 maven 仓库（工作区根目录下的 .m2/repository），
+// 由核心工程的 `gradlew :core:publishToWorkspaceMaven` 产出。
+def workspaceMaven = rootProject.file('.m2/repository')
+def coreProject = rootProject.findProject(':core')
+def standaloneCoreJar = file("../core/build/libs/erosionera-0.0.1.jar")
 
 java {
     archivesBaseName = 'biomachinery'
@@ -47,6 +46,7 @@ minecraft {
                 biomachinery {
                     source sourceSets.main
                 }
+
             }
         }
 
@@ -61,6 +61,7 @@ minecraft {
                 biomachinery {
                     source sourceSets.main
                 }
+
             }
         }
 
@@ -76,6 +77,7 @@ minecraft {
                 biomachinery {
                     source sourceSets.main
                 }
+
             }
         }
     }
@@ -92,8 +94,13 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven { url = 'https://maven.aliyun.com/repository/public/' }
     mavenCentral()
-    // 核心模组的构建产物以本地文件形式依赖（见 fg-5.x 文档的 Local Mod Dependencies）
-    flatDir { dir coreJarDir }
+    // 核心模组的本地发布仓库（工作区内可用时）
+    if (workspaceMaven.exists()) {
+        maven {
+            url = workspaceMaven
+            content { includeGroup 'campionebase' }
+        }
+    }
 }
 
 dependencies {
@@ -101,15 +108,19 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    // 核心模组：以「已 reobf 的构建产物」依赖，并由 fg.deobf 转回开发映射。
-    // 不要改成 implementation project(':core')：那样核心会以开发命名空间再次进入
-    // 类路径，与 Forge 加载的 reobf 产物重名冲突（NoSuchMethodError: m_xxxxx_）。
-    implementation fg.deobf("campionebase:erosionera:${coreVersion}")
+    // 核心模组：以「已 reobf 的构件」依赖，再由 fg.deobf 转回开发命名空间。
+    // 这是 Forge 官方文档中 Mod Dependencies 的标准写法，也是开发环境里唯一可靠的接法：
+    //   - 直接加载核心的开发类 / 把源码集挂进运行配置 -> 类出现两份，抛 NoSuchMethodError: m_xxxxx_
+    //   - 直接加载核心的 reobf 产物          -> 注册阶段抛 NoSuchMethodError / NoSuchFieldError
+    // 前置：先执行 `gradlew :core:publishToWorkspaceMaven` 产出本地构件。
+    if (workspaceMaven.exists()) {
+        implementation fg.deobf("campionebase:erosionera:0.0.1")
+    } else {
+        // 极端情况兜底：本地仓库缺失时退回直接使用核心的构建产物
+        implementation fg.deobf(files(standaloneCoreJar))
+    }
 }
 
-// 编译附属模组前先把核心模组的 reobf 产物构建出来
-tasks.named('compileJava') { dependsOn coreJarTask }
-tasks.named('build') { dependsOn coreJarTask }
 
 jar {
     manifest {
