@@ -12,7 +12,7 @@ import net.minecraftforge.registries.*;
 
 import java.util.function.Supplier;
 
-@Translation(namespace = BioMachinery.MODID, prefix = BioMachineType.KEY)
+@Translation(prefix = BioMachineType.KEY)
 public class BioMachineTypes {
     public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, BioMachineType.KEY);
     public static final ResourceKey<Registry<BioMachineType<?>>> KEY = ResourceKey.createRegistryKey(NAME);

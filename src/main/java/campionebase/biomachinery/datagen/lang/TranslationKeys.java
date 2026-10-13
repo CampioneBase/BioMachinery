@@ -1,4 +1,4 @@
-package campionebase.biomachinery.data.lang;
+package campionebase.biomachinery.datagen.lang;
 
 import campionebase.biomachinery.BioMachinery;
 import campionebase.erosionera.data.lang.Translation;
@@ -8,10 +8,10 @@ import net.minecraft.resources.ResourceLocation;
  * 活体机械模组的翻译键。
  *
  * <p>注解与生成器都来自核心模组 {@code campionebase.erosionera.data.lang}：
- * 命名空间由本模组以 {@code namespace} 参数声明，注解本身不再灌注任何模组名称，
+ * 注解不声明命名空间，翻译来源按生成器传入的模组 id 扫描本模组自身的类，
  * 因此附属模组直接复用核心 API，无需持有同义类副本。
  */
-@Translation(namespace = BioMachinery.MODID)
+@Translation
 public class TranslationKeys {
     public static String getKeyName(String name, String type){
         return ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, name).toLanguageKey(type);

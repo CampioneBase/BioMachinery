@@ -1,4 +1,4 @@
-package campionebase.biomachinery.data.blockstate;
+package campionebase.biomachinery.datagen.blockstate;
 
 import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.block.BioCameraBlock;

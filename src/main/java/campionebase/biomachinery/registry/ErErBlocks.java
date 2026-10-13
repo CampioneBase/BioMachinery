@@ -8,7 +8,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-@Translation(namespace = BioMachinery.MODID, prefix = "block")
+@Translation(prefix = "block")
 public class ErErBlocks {
     public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(Registries.BLOCK, BioMachinery.MODID);
 

@@ -11,7 +11,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-@Translation(namespace = BioMachinery.MODID, prefix = "item_group")
+@Translation(prefix = "item_group")
 public class ErErTabs {
     public static final DeferredRegister<CreativeModeTab> REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BioMachinery.MODID);
     @Translation.Key("侵蚀国度：活体机械")

@@ -1,14 +1,13 @@
-package campionebase.biomachinery.data;
+package campionebase.biomachinery.datagen;
 
 import campionebase.biomachinery.BioMachinery;
-import campionebase.biomachinery.data.blockstate.BioCameraBlockStateProvider;
-import campionebase.biomachinery.data.blockstate.BioConnectorBlockStateProvider;
-import campionebase.biomachinery.data.blockstate.HorizontalBlockStateProvider;
-import campionebase.biomachinery.data.blockstate.NormalBlockStateProvider;
-import campionebase.biomachinery.data.model.block.BedBlockModelProvider;
-import campionebase.biomachinery.data.model.item.NormalItemModelProvider;
-// 翻译生成器来自核心模组：模组 id 与命名空间作为构造参数传入，不再硬编码
-import campionebase.erosionera.data.lang.MultiLanguageProvider;
+import campionebase.biomachinery.datagen.blockstate.BioCameraBlockStateProvider;
+import campionebase.biomachinery.datagen.blockstate.BioConnectorBlockStateProvider;
+import campionebase.biomachinery.datagen.blockstate.HorizontalBlockStateProvider;
+import campionebase.biomachinery.datagen.blockstate.NormalBlockStateProvider;
+import campionebase.biomachinery.datagen.model.block.BedBlockModelProvider;
+import campionebase.biomachinery.datagen.model.item.NormalItemModelProvider;
+import campionebase.erosionera.datagen.lang.MultiLanguageProvider;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -39,10 +38,10 @@ public class DataProviderEvent {
         generator.addProvider(event.includeServer(), new NormalBlockStateProvider(output, helper));
         generator.addProvider(event.includeServer(), new BioConnectorBlockStateProvider(output, helper));
         generator.addProvider(event.includeServer(), new BioCameraBlockStateProvider(output, helper));
-        // 生成翻译文件：只处理本模组命名空间下的翻译来源
+        // 生成翻译文件：只处理本模组自身的翻译来源
         for (String locale : MultiLanguageProvider.collectLanguages(BioMachinery.MODID)) {
             generator.addProvider(event.includeClient(),
-                    new MultiLanguageProvider(output, BioMachinery.MODID, BioMachinery.MODID, locale));
+                    new MultiLanguageProvider(output, BioMachinery.MODID, locale));
         }
     }
 }

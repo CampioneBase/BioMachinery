@@ -11,7 +11,7 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-@Translation(namespace = BioMachinery.MODID, prefix = "item")
+@Translation(prefix = "item")
 public class ErErItems {
     public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(Registries.ITEM, BioMachinery.MODID);
     @Translation.Key("活体金属")

@@ -1,4 +1,4 @@
-package campionebase.biomachinery.data.model.item;
+package campionebase.biomachinery.datagen.model.item;
 
 import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.registry.ErErItems;

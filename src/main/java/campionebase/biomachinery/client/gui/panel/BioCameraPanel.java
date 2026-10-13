@@ -8,7 +8,7 @@ import campionebase.biomachinery.api.render.BioMachineRenderers;
 import campionebase.biomachinery.blockentity.BioCameraBlockEntity;
 import campionebase.biomachinery.client.gui.animation.AnimatedInteger;
 import campionebase.biomachinery.client.gui.animation.Easing;
-import campionebase.biomachinery.data.lang.TranslationKeys;
+import campionebase.biomachinery.datagen.lang.TranslationKeys;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;

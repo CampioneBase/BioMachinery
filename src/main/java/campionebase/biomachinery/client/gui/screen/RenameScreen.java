@@ -1,7 +1,7 @@
 package campionebase.biomachinery.client.gui.screen;
 
 import campionebase.biomachinery.api.Nameable;
-import campionebase.biomachinery.data.lang.TranslationKeys;
+import campionebase.biomachinery.datagen.lang.TranslationKeys;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
 import net.minecraft.client.gui.components.EditBox;

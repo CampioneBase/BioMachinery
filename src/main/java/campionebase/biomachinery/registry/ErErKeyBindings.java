@@ -19,7 +19,7 @@ import org.lwjgl.glfw.GLFW;
         value = Dist.CLIENT
 )
 @OnlyIn(Dist.CLIENT)
-@Translation(namespace = BioMachinery.MODID, prefix = "key")
+@Translation(prefix = "key")
 public class ErErKeyBindings {
     @Translation.Key("侵蚀国度：活体机械")
     public static final String KEY_CATEGORY_BM = "key.category." + BioMachinery.MODID + ".bio_machinery";

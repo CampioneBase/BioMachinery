@@ -1,4 +1,4 @@
-package campionebase.biomachinery.data.model.block;
+package campionebase.biomachinery.datagen.model.block;
 
 import campionebase.biomachinery.BioMachinery;
 import net.minecraft.core.Direction;

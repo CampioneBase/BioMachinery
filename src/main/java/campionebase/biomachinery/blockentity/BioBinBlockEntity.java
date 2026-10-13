@@ -3,7 +3,7 @@ package campionebase.biomachinery.blockentity;
 import campionebase.biomachinery.api.IBioMachine;
 import campionebase.biomachinery.api.render.BioMachineRenderable;
 import campionebase.biomachinery.api.render.BioMachineRenderers;
-import campionebase.biomachinery.data.lang.TranslationKeys;
+import campionebase.biomachinery.datagen.lang.TranslationKeys;
 import campionebase.biomachinery.item.SingleItemHandler;
 import campionebase.biomachinery.registry.ErErBlockEntities;
 import net.minecraft.core.BlockPos;
