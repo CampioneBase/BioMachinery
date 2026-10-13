@@ -1,0 +1,60 @@
+package campionebase.biomachinery.data.blockstate;
+
+import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.registry.ErErBlocks;
+import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.Block;
+import net.minecraftforge.client.model.generators.BlockStateProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
+import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
+
+public class NormalBlockStateProvider extends BlockStateProvider {
+    public NormalBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
+        super(output, Biomachinery.MODID, exFileHelper);
+    }
+
+    @Override
+    protected void registerStatesAndModels() {
+        simpleBlock(ErErBlocks.BIO_CORE);
+        simpleBlock(ErErBlocks.BIO_CONTROLLER);
+        simpleBlock(ErErBlocks.BIO_NUTRITION_TANK);
+        simpleBlock(ErErBlocks.BIO_REDSTONE);
+
+        copyBlock(ErErBlocks.BIO_BARREL, mcLoc("block/barrel"));
+        copyBlock(ErErBlocks.BIO_BIN, mcLoc("block/barrel"));
+    }
+
+    private void simpleBlock(RegistryObject<Block> registryObject){
+        Block block = registryObject.get();
+        String name = registryObject.getId().getPath();
+        ModelFile model = models()
+                .getBuilder(name)
+                .parent(models().getExistingFile(mcLoc("block/cube_all")))
+                .texture("all","block/" + name)
+                .texture("particle", "block/" + name)
+                .renderType(mcLoc("solid"));
+        simpleBlockWithItem(block, model);
+
+        itemModels().getBuilder(name).parent(model);
+    }
+
+    private void copyBlock(RegistryObject<Block> registryObject, ResourceLocation copied){
+        Block block = registryObject.get();
+        String name = registryObject.getId().getPath();
+
+        ModelFile model = models()
+                .getBuilder(name)
+                .parent(models().getExistingFile(copied));
+
+        simpleBlock(block, model);
+        itemModels().getBuilder(name).parent(model);
+    }
+
+    @Override
+    public @NotNull String getName() {
+        return super.getName() + "(Simple)";
+    }
+}

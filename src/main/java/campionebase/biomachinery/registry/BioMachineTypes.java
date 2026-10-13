@@ -1,0 +1,52 @@
+package campionebase.biomachinery.registry;
+
+import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.api.*;
+import campionebase.biomachinery.blockentity.BioNutritionTankBlockEntity;
+import campionebase.biomachinery.blockentity.BioRedstoneBlockEntity;
+import campionebase.biomachinery.data.lang.Translation;
+import net.minecraft.core.Registry;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.registries.*;
+
+import java.util.function.Supplier;
+
+@Translation(prefix = BioMachineType.KEY)
+public class BioMachineTypes {
+    public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID, BioMachineType.KEY);
+    public static final ResourceKey<Registry<BioMachineType<?>>> KEY = ResourceKey.createRegistryKey(NAME);
+    public static final DeferredRegister<BioMachineType<?>> REGISTER = DeferredRegister.create(KEY, Biomachinery.MODID);
+    public static final Supplier<IForgeRegistry<BioMachineType<?>>> REGISTRY = REGISTER.makeRegistry(() -> RegistryBuilder
+            .<BioMachineType<?>>of(NAME)
+    );
+
+    public static <M extends IBioMachine> RegistryObject<BioMachineType<M>> register(String name, BioMachineType.Builder<M> builder){
+        return REGISTER.register(name, () -> builder.build(name));
+    }
+
+    @Translation.Key("核心")
+    public static final RegistryObject<BioMachineType<IBioCore>> CORE = register("core", BioMachineType
+            .builder(IBioCore.class)
+    );
+
+    @Translation.Key("摄像机")
+    public static final RegistryObject<BioMachineType<IBioCamera>> CAMERA = register("camera", BioMachineType
+            .builder(IBioCamera.class)
+    );
+
+    @Translation.Key("存储")
+    public static final RegistryObject<BioMachineType<IBioStorage>> STORAGE = register("storage", BioMachineType
+            .builder(IBioStorage.class)
+    );
+
+    @Translation.Key("营养液储罐")
+    public static final RegistryObject<BioMachineType<BioNutritionTankBlockEntity>> NUTRITION_TANK = register("nutrition_tank", BioMachineType
+            .builder(BioNutritionTankBlockEntity.class)
+    );
+
+    @Translation.Key("红石控制")
+    public static final RegistryObject<BioMachineType<BioRedstoneBlockEntity>> REDSTONE = register("redstone", BioMachineType
+            .builder(BioRedstoneBlockEntity.class)
+    );
+}

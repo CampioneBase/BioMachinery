@@ -1,0 +1,35 @@
+modLoader = "javafml"
+loaderVersion = "[47,)"
+license = "All Rights Reserved"
+issueTrackerURL = "https://github.com/CampioneBase/BioMachinery/issues"
+
+[[mods]]
+modId = "biomachinery"
+version = "${file.jarVersion}"
+displayName = "侵蚀国度：活体机械"
+authors = "CampioneBase"
+description = '''
+侵蚀国度核心模组的附属模组：活体机械（Bio-machinery）及其活体机械网络。
+'''
+
+[[dependencies.biomachinery]]
+modId = "forge"
+mandatory = true
+versionRange = "[47,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.biomachinery]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.1,1.21)"
+ordering = "NONE"
+side = "BOTH"
+
+# 附属模组强依赖核心模组，且必须在其之后加载
+[[dependencies.biomachinery]]
+modId = "erosionera"
+mandatory = true
+versionRange = "[0.0.1,)"
+ordering = "AFTER"
+side = "BOTH"
