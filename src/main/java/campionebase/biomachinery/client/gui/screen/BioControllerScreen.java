@@ -1,6 +1,6 @@
 package campionebase.biomachinery.client.gui.screen;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.api.*;
 import campionebase.biomachinery.client.gui.animation.AnimatedFloat;
 import campionebase.biomachinery.client.gui.animation.Easing;
@@ -44,7 +44,7 @@ import java.util.stream.Collectors;
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(
         value = Dist.CLIENT,
-        modid = Biomachinery.MODID
+        modid = BioMachinery.MODID
 )
 public class BioControllerScreen extends Screen implements MenuAccess<BioControllerMenu> {
     private static final int LEFT_SECTION_WIDTH = 144;

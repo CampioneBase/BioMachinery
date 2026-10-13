@@ -1,10 +1,10 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.api.*;
 import campionebase.biomachinery.blockentity.BioNutritionTankBlockEntity;
 import campionebase.biomachinery.blockentity.BioRedstoneBlockEntity;
-import campionebase.biomachinery.data.lang.Translation;
+import campionebase.erosionera.data.lang.Translation;
 import net.minecraft.core.Registry;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
@@ -12,11 +12,11 @@ import net.minecraftforge.registries.*;
 
 import java.util.function.Supplier;
 
-@Translation(prefix = BioMachineType.KEY)
+@Translation(namespace = BioMachinery.MODID, prefix = BioMachineType.KEY)
 public class BioMachineTypes {
-    public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID, BioMachineType.KEY);
+    public static final ResourceLocation NAME = ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, BioMachineType.KEY);
     public static final ResourceKey<Registry<BioMachineType<?>>> KEY = ResourceKey.createRegistryKey(NAME);
-    public static final DeferredRegister<BioMachineType<?>> REGISTER = DeferredRegister.create(KEY, Biomachinery.MODID);
+    public static final DeferredRegister<BioMachineType<?>> REGISTER = DeferredRegister.create(KEY, BioMachinery.MODID);
     public static final Supplier<IForgeRegistry<BioMachineType<?>>> REGISTRY = REGISTER.makeRegistry(() -> RegistryBuilder
             .<BioMachineType<?>>of(NAME)
     );

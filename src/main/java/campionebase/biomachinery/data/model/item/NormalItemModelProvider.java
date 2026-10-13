@@ -1,6 +1,6 @@
 package campionebase.biomachinery.data.model.item;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.registry.ErErItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.item.Item;
@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class NormalItemModelProvider extends ItemModelProvider {
     public NormalItemModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, Biomachinery.MODID, existingFileHelper);
+        super(output, BioMachinery.MODID, existingFileHelper);
     }
 
     @Override

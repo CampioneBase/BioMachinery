@@ -1,16 +1,16 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.block.*;
-import campionebase.biomachinery.data.lang.Translation;
+import campionebase.erosionera.data.lang.Translation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-@Translation(prefix = "block")
+@Translation(namespace = BioMachinery.MODID, prefix = "block")
 public class ErErBlocks {
-    public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(Registries.BLOCK, Biomachinery.MODID);
+    public static final DeferredRegister<Block> REGISTER = DeferredRegister.create(Registries.BLOCK, BioMachinery.MODID);
 
     @Translation.Key("活体核心")
     public static final RegistryObject<Block> BIO_CORE = REGISTER.register("bio_core", BioCoreBlock::new);

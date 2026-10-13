@@ -1,6 +1,6 @@
 package campionebase.biomachinery.data.blockstate;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.registry.ErErBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +13,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class NormalBlockStateProvider extends BlockStateProvider {
     public NormalBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, Biomachinery.MODID, exFileHelper);
+        super(output, BioMachinery.MODID, exFileHelper);
     }
 
     @Override

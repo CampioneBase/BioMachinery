@@ -1,6 +1,6 @@
 package campionebase.biomachinery.data.blockstate;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.block.BioConnectorBlock;
 import campionebase.biomachinery.registry.ErErBlocks;
 import net.minecraft.core.Direction;
@@ -14,7 +14,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BioConnectorBlockStateProvider extends BlockStateProvider {
     public BioConnectorBlockStateProvider(PackOutput output, ExistingFileHelper exFileHelper) {
-        super(output, Biomachinery.MODID, exFileHelper);
+        super(output, BioMachinery.MODID, exFileHelper);
     }
 
     @Override

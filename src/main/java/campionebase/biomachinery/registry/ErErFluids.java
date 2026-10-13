@@ -1,8 +1,8 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
-import campionebase.biomachinery.data.lang.Translation;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.fluid.ManaFluid;
+import campionebase.erosionera.data.lang.Translation;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
@@ -25,12 +25,12 @@ import net.minecraftforge.registries.RegistryObject;
 
 import java.util.function.Consumer;
 
-@Translation
+@Translation(namespace = BioMachinery.MODID)
 public class ErErFluids {
-    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, Biomachinery.MODID);
-    public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, Biomachinery.MODID);
-    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, Biomachinery.MODID);
-    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, Biomachinery.MODID);
+    public static final DeferredRegister<Fluid> FLUIDS = DeferredRegister.create(ForgeRegistries.FLUIDS, BioMachinery.MODID);
+    public static final DeferredRegister<FluidType> FLUID_TYPES = DeferredRegister.create(ForgeRegistries.Keys.FLUID_TYPES, BioMachinery.MODID);
+    public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, BioMachinery.MODID);
+    public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, BioMachinery.MODID);
     public static void register(IEventBus bus){
         FLUIDS.register(bus);
         FLUID_TYPES.register(bus);

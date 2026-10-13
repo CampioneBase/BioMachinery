@@ -1,9 +1,9 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
-import campionebase.biomachinery.data.lang.Translation;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.item.BioWireItem;
 import campionebase.biomachinery.item.RenameTagItem;
+import campionebase.erosionera.data.lang.Translation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -11,9 +11,9 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
-@Translation(prefix = "item")
+@Translation(namespace = BioMachinery.MODID, prefix = "item")
 public class ErErItems {
-    public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(Registries.ITEM, Biomachinery.MODID);
+    public static final DeferredRegister<Item> REGISTER = DeferredRegister.create(Registries.ITEM, BioMachinery.MODID);
     @Translation.Key("活体金属")
     public static final RegistryObject<Item> BIO_METAL = REGISTER.register("bio_metal", () -> new Item(new Item.Properties()));
 

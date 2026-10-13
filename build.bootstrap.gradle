@@ -1,0 +1,70 @@
+// 一次性引导脚本（用完即删）：提交两个子模块。
+// 用法： gradlew -b biomachinery/build.bootstrap.gradle commitSubmodules
+
+def wsRoot = project.projectDir.parentFile
+
+tasks.register('commitSubmodules') {
+    group = 'bootstrap'
+    doLast {
+        def tmpDir = new File(System.getProperty('java.io.tmpdir'))
+        def coreDir = new File(wsRoot, 'core').absolutePath
+        def bioDir = new File(wsRoot, 'biomachinery').absolutePath
+
+        def runGit = { String workdir, List<String> args, boolean ignoreFailure = false ->
+            def out = new ByteArrayOutputStream()
+            def result = project.exec {
+                commandLine(['git', '-C', workdir] + args)
+                standardOutput = out
+                errorOutput = out
+                ignoreExitValue = true
+            }
+            def text = out.toString('UTF-8').trim()
+            println 'git ' + args.join(' ') + '  (exit=' + result.exitValue + ')'
+            if (text) println text
+            if (!ignoreFailure && result.exitValue != 0) {
+                throw new GradleException('git ' + args.join(' ') + ' failed: ' + text)
+            }
+            text
+        }
+
+        def coreMsg = new File(tmpDir, 'ee_core_lang.txt')
+        coreMsg.setText('''翻译模块解耦：注解不再硬编码模组名，生成器改为参数注入
+
+- Translation 注解去掉 namespace 默认值（原来默认 ErosionEra.MODID），改为必填，
+  注解本身不再依赖任何模组主类，可被任意附属模组复用
+- MultiLanguageProvider 构造函数改为 (PackOutput, modId, namespace, locale)，
+  不再 import 具体模组；collectLanguages(namespace) 按命名空间收集语言
+- DataProviderUtils 新增按注解 namespace 属性过滤的扫描重载，
+  读取 Forge 扫描数据里的注解属性，无需为读注解而加载类
+- 核心侧 ErErFluids / TranslationKeys 显式声明 namespace = ErosionEra.MODID，
+  DataProviderEvent 改为 collectLanguages(ErosionEra.MODID)
+- 生成结果：assets/erosionera/lang/zh_cn.json 只含 erosionera 命名空间条目
+''', 'UTF-8')
+
+        def bioMsg = new File(tmpDir, 'ee_bio_lang.txt')
+        bioMsg.setText('''翻译模块改为调用核心 API，删除重复实现
+
+- 删除本模组内与核心同义的三份副本：
+  data/lang/Translation.java、data/lang/MultiLanguageProvider.java、data/DataProviderUtils.java
+- 所有 @Translation 改用核心注解 campionebase.erosionera.data.lang.Translation，
+  并显式声明 namespace = BioMachinery.MODID
+- DataProviderEvent 改用核心 MultiLanguageProvider，
+  以 (output, biomachinery, biomachinery, locale) 构造，只生成本模组命名空间的翻译
+- 生成结果：assets/biomachinery/lang/zh_cn.json 全部为 biomachinery 命名空间条目
+  （原先遗留的 erosionera 命名空间条目已随重新生成被覆盖）
+- 顺带同步主类文件名为 BioMachinery.java，与类名保持一致
+''', 'UTF-8')
+
+        println '===== core ====='
+        runGit(coreDir, ['add', '-A'])
+        runGit(coreDir, ['commit', '-F', coreMsg.absolutePath])
+
+        println '===== biomachinery ====='
+        runGit(bioDir, ['add', '-A'])
+        runGit(bioDir, ['commit', '-F', bioMsg.absolutePath])
+
+        println '===== result ====='
+        runGit(coreDir, ['log', '--oneline', '-2'], true)
+        runGit(bioDir, ['log', '--oneline', '-2'], true)
+    }
+}

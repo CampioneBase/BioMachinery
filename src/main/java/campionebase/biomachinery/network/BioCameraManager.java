@@ -1,6 +1,6 @@
 package campionebase.biomachinery.network;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.api.BioMachineData;
 import campionebase.biomachinery.api.IBioCamera;
 import campionebase.biomachinery.api.IBioController;
@@ -25,7 +25,7 @@ import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-@Mod.EventBusSubscriber(modid = Biomachinery.MODID)
+@Mod.EventBusSubscriber(modid = BioMachinery.MODID)
 public class BioCameraManager {
     public static final Logger LOGGER = LogManager.getLogger(BioCameraManager.class);
     /** 服务端检测间隔 */

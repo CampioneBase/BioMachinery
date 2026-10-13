@@ -1,20 +1,16 @@
 package campionebase.biomachinery.api;
 
-import campionebase.biomachinery.Biomachinery;
-import campionebase.biomachinery.blockentity.AbstractBioConnectorBlockEntity;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.network.BioMachineryService;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-@Mod.EventBusSubscriber(modid = Biomachinery.MODID)
+@Mod.EventBusSubscriber(modid = BioMachinery.MODID)
 public interface IBioConnector {
     @NotNull BlockPos getBlockPos();
 

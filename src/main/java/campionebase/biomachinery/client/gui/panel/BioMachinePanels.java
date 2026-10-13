@@ -1,6 +1,6 @@
 package campionebase.biomachinery.client.gui.panel;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.api.BioMachineType;
 import campionebase.biomachinery.api.IBioMachine;
 import campionebase.biomachinery.registry.BioMachineTypes;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 
 @Mod.EventBusSubscriber(
-        modid = Biomachinery.MODID,
+        modid = BioMachinery.MODID,
         value = Dist.CLIENT,
         bus = Mod.EventBusSubscriber.Bus.MOD
 )

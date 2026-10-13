@@ -1,7 +1,7 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
-import campionebase.biomachinery.data.lang.Translation;
+import campionebase.biomachinery.BioMachinery;
+import campionebase.erosionera.data.lang.Translation;
 import com.mojang.blaze3d.platform.InputConstants;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.resources.ResourceLocation;
@@ -14,15 +14,15 @@ import net.minecraftforge.fml.common.Mod;
 import org.lwjgl.glfw.GLFW;
 
 @Mod.EventBusSubscriber(
-        modid = Biomachinery.MODID,
+        modid = BioMachinery.MODID,
         bus = Mod.EventBusSubscriber.Bus.MOD,
         value = Dist.CLIENT
 )
 @OnlyIn(Dist.CLIENT)
-@Translation(prefix = "key")
+@Translation(namespace = BioMachinery.MODID, prefix = "key")
 public class ErErKeyBindings {
     @Translation.Key("侵蚀国度：活体机械")
-    public static final String KEY_CATEGORY_BM = "key.category." + Biomachinery.MODID + ".bio_machinery";
+    public static final String KEY_CATEGORY_BM = "key.category." + BioMachinery.MODID + ".bio_machinery";
     @Translation.Key("上一个摄像机")
     public static final KeyMapping PREV_BIO_CAMERA_KEY = new KeyMapping(
             getKeyId("prev_bio_camera"),
@@ -65,7 +65,7 @@ public class ErErKeyBindings {
     );
 
     private static String getKeyId(String name){
-        return ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID, name).toLanguageKey("key");
+        return ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, name).toLanguageKey("key");
     }
     @SubscribeEvent
     public static void onRegisterKeyMappings(RegisterKeyMappingsEvent event) {

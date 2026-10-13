@@ -1,6 +1,6 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.blockentity.*;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -10,7 +10,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ErErBlockEntities {
-    public static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, Biomachinery.MODID);
+    public static final DeferredRegister<BlockEntityType<?>> REGISTER = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, BioMachinery.MODID);
 
     public static final RegistryObject<BlockEntityType<BioCoreBlockEntity>> BIO_CORE = register(
             "bio_core",

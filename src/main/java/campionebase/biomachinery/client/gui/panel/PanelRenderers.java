@@ -1,6 +1,6 @@
 package campionebase.biomachinery.client.gui.panel;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.api.BioMachineType;
 import campionebase.biomachinery.api.IBioMachine;
 import campionebase.biomachinery.api.render.BioMachineRenderable;
@@ -29,7 +29,7 @@ import java.util.Map;
 @OnlyIn(Dist.CLIENT)
 @Mod.EventBusSubscriber(
         value = Dist.CLIENT,
-        modid = Biomachinery.MODID,
+        modid = BioMachinery.MODID,
         bus = Mod.EventBusSubscriber.Bus.MOD
 )
 public final class PanelRenderers {

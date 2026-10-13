@@ -1,27 +1,21 @@
 package campionebase.biomachinery.client.event;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.api.IBioCamera;
 import campionebase.biomachinery.inventory.BioControllerMenu;
 import campionebase.biomachinery.mixin.CameraAccessor;
 import net.minecraft.client.Camera;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
-import net.minecraft.client.resources.sounds.SimpleSoundInstance;
-import net.minecraft.client.resources.sounds.SoundInstance;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.RenderHandEvent;
 import net.minecraftforge.client.event.RenderNameTagEvent;
 import net.minecraftforge.client.event.ViewportEvent;
-import net.minecraftforge.client.event.sound.PlaySoundEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(
-        modid = Biomachinery.MODID,
+        modid = BioMachinery.MODID,
         value = Dist.CLIENT
 )
 public class BioCameraEvent {

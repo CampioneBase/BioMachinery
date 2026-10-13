@@ -1,6 +1,6 @@
 package campionebase.biomachinery.data.model.block;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraftforge.client.model.generators.BlockModelProvider;
@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 public class BedBlockModelProvider extends BlockModelProvider {
     public BedBlockModelProvider(PackOutput output, ExistingFileHelper existingFileHelper) {
-        super(output, Biomachinery.MODID, existingFileHelper);
+        super(output, BioMachinery.MODID, existingFileHelper);
     }
 
     @Override

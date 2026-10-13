@@ -1,6 +1,6 @@
 package campionebase.biomachinery.api;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import net.minecraft.resources.ResourceLocation;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -50,7 +50,7 @@ public final class BioMachineType<M extends IBioMachine>
 
     public static class Builder<M extends IBioMachine>{
         private final Class<M> machineClazz;
-        private ResourceLocation id = ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID, "unknown");
+        private ResourceLocation id = ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, "unknown");
         private int orderWeight = Integer.MIN_VALUE;
 
         public static <M extends IBioMachine> Builder<M> of(Class<M> clazz){ return new Builder<>(clazz); }
@@ -59,7 +59,7 @@ public final class BioMachineType<M extends IBioMachine>
         public Builder<M> setOrderWeight(int orderWeight){ this.orderWeight = orderWeight; return this; }
         private BioMachineType<M> build() { return new BioMachineType<>(this); }
         public BioMachineType<M> build(String name){
-            return this.build(ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID, name));
+            return this.build(ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, name));
         }
         public BioMachineType<M> build(ResourceLocation id){
             this.id = id;

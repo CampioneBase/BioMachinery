@@ -1,6 +1,6 @@
 package campionebase.biomachinery.client.renderer.blockentity;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.blockentity.AbstractBioConnectorBlockEntity;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.renderer.*;
@@ -17,7 +17,7 @@ import org.joml.Matrix4f;
 import java.util.Set;
 
 public class BioWireRender implements BlockEntityRenderer<AbstractBioConnectorBlockEntity> {
-    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID,
+    public static final ResourceLocation TEXTURE = ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID,
             "textures/block/bio_wire.png"
     );
     private static final RenderType WIRE_TYPE = RenderType.entityCutout(TEXTURE);

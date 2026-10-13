@@ -1,7 +1,7 @@
 package campionebase.biomachinery.registry;
 
-import campionebase.biomachinery.Biomachinery;
-import campionebase.biomachinery.data.lang.Translation;
+import campionebase.biomachinery.BioMachinery;
+import campionebase.erosionera.data.lang.Translation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.CreativeModeTab;
@@ -11,9 +11,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-@Translation(prefix = "item_group")
+@Translation(namespace = BioMachinery.MODID, prefix = "item_group")
 public class ErErTabs {
-    public static final DeferredRegister<CreativeModeTab> REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Biomachinery.MODID);
+    public static final DeferredRegister<CreativeModeTab> REGISTER = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, BioMachinery.MODID);
     @Translation.Key("侵蚀国度：活体机械")
     public static final RegistryObject<CreativeModeTab> BIO_MACHINERY = REGISTER.register("bio_machinery", () -> CreativeModeTab.builder()
             .title(Component.translatable("item_group.biomachinery.bio_machinery"))

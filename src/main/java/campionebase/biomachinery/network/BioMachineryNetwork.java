@@ -1,6 +1,6 @@
 package campionebase.biomachinery.network;
 
-import campionebase.biomachinery.Biomachinery;
+import campionebase.biomachinery.BioMachinery;
 import campionebase.biomachinery.network.packet.c2s.*;
 import campionebase.biomachinery.network.packet.s2c.*;
 import campionebase.biomachinery.network.packet.rr.*;
@@ -15,7 +15,7 @@ public class BioMachineryNetwork {
     private static final String PROTOCOL_VERSION = "1.2";
     private static int PACKET_ID = 0;
     public static final SimpleChannel INSTANCE = NetworkRegistry.newSimpleChannel(
-            ResourceLocation.fromNamespaceAndPath(Biomachinery.MODID, "bio_machinery"),
+            ResourceLocation.fromNamespaceAndPath(BioMachinery.MODID, "bio_machinery"),
             () -> PROTOCOL_VERSION,
             PROTOCOL_VERSION::equals,
             PROTOCOL_VERSION::equals
