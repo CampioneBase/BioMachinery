@@ -16,6 +16,16 @@ apply plugin: 'org.spongepowered.mixin'
 group = 'campionebase'
 version = '0.0.1'
 
+// 核心模组（ErosionEra）的依赖坐标与构建产物位置。
+//   工作区模式：核心是同一次构建中的 :core 子工程
+//   独立模式  ：核心仓库以 git 子模块形式位于同级目录，需先在其目录内执行 gradlew build
+def coreVersion = '0.0.1'
+def inWorkspace = rootProject.findProject(':core') != null
+def coreJarDir = inWorkspace
+        ? rootProject.project(':core').layout.buildDirectory.dir('libs').get().asFile
+        : file('../core/build/libs')
+def coreJarTask = inWorkspace ? ':core:reobfJar' : null
+
 java {
     archivesBaseName = 'biomachinery'
     toolchain.languageVersion = JavaLanguageVersion.of(17)
@@ -24,7 +34,7 @@ java {
 minecraft {
     mappings channel: 'official', version: '1.20.1'
 
-    // 活体机械附属模组：核心模组 ErosionEra 在同一工作区中一起加载
+    // 活体机械附属模组：核心模组 ErosionEra 在同一环境中一起加载
     runs {
         client {
             workingDirectory project.file('run')
@@ -36,9 +46,6 @@ minecraft {
             mods {
                 biomachinery {
                     source sourceSets.main
-                }
-                erosionera {
-                    source project(':erosionera:').sourceSets.main
                 }
             }
         }
@@ -54,9 +61,6 @@ minecraft {
                 biomachinery {
                     source sourceSets.main
                 }
-                erosionera {
-                    source project(':erosionera:').sourceSets.main
-                }
             }
         }
 
@@ -71,9 +75,6 @@ minecraft {
             mods {
                 biomachinery {
                     source sourceSets.main
-                }
-                erosionera {
-                    source project(':erosionera:').sourceSets.main
                 }
             }
         }
@@ -91,6 +92,8 @@ sourceSets.main.resources { srcDir 'src/generated/resources' }
 repositories {
     maven { url = 'https://maven.aliyun.com/repository/public/' }
     mavenCentral()
+    // 核心模组的构建产物以本地文件形式依赖（见 fg-5.x 文档的 Local Mod Dependencies）
+    flatDir { dir coreJarDir }
 }
 
 dependencies {
@@ -98,9 +101,15 @@ dependencies {
 
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
 
-    // 核心模组：复合构建替换为本地工程，运行时与编译期都需要
-    implementation project(':erosionera:')
+    // 核心模组：以「已 reobf 的构建产物」依赖，并由 fg.deobf 转回开发映射。
+    // 不要改成 implementation project(':core')：那样核心会以开发命名空间再次进入
+    // 类路径，与 Forge 加载的 reobf 产物重名冲突（NoSuchMethodError: m_xxxxx_）。
+    implementation fg.deobf("campionebase:erosionera:${coreVersion}")
 }
+
+// 编译附属模组前先把核心模组的 reobf 产物构建出来
+tasks.named('compileJava') { dependsOn coreJarTask }
+tasks.named('build') { dependsOn coreJarTask }
 
 jar {
     manifest {

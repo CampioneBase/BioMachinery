@@ -1,20 +1,11 @@
-pluginManagement {
-    repositories {
-        gradlePluginPortal()
-        maven { url = 'https://maven.minecraftforge.net/' }
-        maven { url = 'https://maven.aliyun.com/repository/public/' }
-    }
-}
+// 侵蚀国度：活体机械（BioMachinery）附属模组
+//
+// 本仓库作为 ErosionEra-Workspace 的子模块使用：在工作区根执行
+//   gradlew :biomachinery:build
+//   gradlew :biomachinery:runClient
+// 会连带构建核心模组，并在同一次运行中同时加载核心与附属模组。
+//
+// 单独克隆本仓库无法独立构建：核心模组是必需依赖，
+// 需先把同级目录的 core 仓库（子模块）构建出 build/libs/erosionera-<version>.jar。
 
-// 本地复合构建：核心模组仓库作为同目录的兄弟工程纳入本次构建。
-// 这样核心代码既能编译期可见，也能在同一 runClient 中与附属模组一起加载。
-// 靠 settings.gradle 中的同名 includeBuild 由 Gradle 自动完成依赖替换；
-// 若本地没有核心仓库（例如 CI 只克隆了附属模组），删除下面这一行即可，
-// 改为使用已发布版本的核心 jar 坐标。
-includeBuild('../ErosionEra') {
-    // 核心仓库的根工程名为 erosionera，这里显式对齐，
-    // 使得下方 build.gradle 可以直接用 project(':erosionera') 引用核心工程。
-    name = 'erosionera'
-}
-
-rootProject.name = 'erosionera-biomachinery'
+rootProject.name = 'biomachinery'
